@@ -1,6 +1,6 @@
 #include "fitxa.h"
 
-// ----------------------- Constructors patata braba
+// ----------------------- Constructors patata braba pinga
 Fitxa::Fitxa()
 {
 	m_color = 0;
