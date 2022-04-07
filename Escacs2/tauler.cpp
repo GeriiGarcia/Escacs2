@@ -5,6 +5,7 @@ Tauler::Tauler()
     m_nPosicionsValides = 0;
 }
 
+
 bool Tauler::posicioValida(Posicio pos,  int diferenciaX, int diferenciaY, int color)
 {
     bool esValida = true;
