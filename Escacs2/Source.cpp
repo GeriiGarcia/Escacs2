@@ -4,6 +4,8 @@
 
 using namespace std;
 
+//hola
+
 void loadBoardFromFile(const string& nomFitxer, Tauler &tauler);
 int main()
 {
