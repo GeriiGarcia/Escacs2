@@ -4,7 +4,7 @@
 
 using namespace std;
 
-//hola
+//hola guapo ;)
 
 void loadBoardFromFile(const string& nomFitxer, Tauler &tauler);
 int main()
@@ -39,13 +39,13 @@ void loadBoardFromFile(const string& nomFitxer, Tauler &tauler)
 	do{
 		getline (fitxer, linea);
 		
-		// Mirem de quin color és
+		// Mirem de quin color es
 		if(linea.at(0) == '0')
 			color = BLANCA;
 		else	
 			color = NEGRA;
 		
-		// Mirem quin tipus de fitxa és
+		// Mirem quin tipus de fitxa es
 		switch(linea.at(3))
 		{
 		case 'R':
@@ -73,7 +73,7 @@ void loadBoardFromFile(const string& nomFitxer, Tauler &tauler)
 			break;
 		}
 
-		// Mirem la seva posició Horitzontal
+		// Mirem la seva posiciÃ³ Horitzontal
 		switch (linea.at(4))
 		{
 		case 'a':
@@ -102,7 +102,7 @@ void loadBoardFromFile(const string& nomFitxer, Tauler &tauler)
 			break;
 		}
 		
-		// Mirem la seva posició vertical
+		// Mirem la seva posiciÃ³ vertical
 		switch (linea.at(5))
 		{
 		case '1':

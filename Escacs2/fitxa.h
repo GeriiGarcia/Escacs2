@@ -1,25 +1,50 @@
 #pragma once
 
 #include <iostream>
+using namespace std;
 
-#define BUIT -1
-#define BLANCA 0
-#define NEGRA 1
+// -+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+ enums
+typedef enum
+{
+	// S'asigna un nom per a cada tipius de fitxa 
+	T_REI,
+	T_REINA,
+	T_TORRE,
+	T_ABAT,
+	T_CABALL,
+	T_PEO,
+	T_BUIT
+}TipusFitxa;
 
-#define REI 1
-#define DAMA 2
-#define	TORRE 3
-#define	ALFIL 4
-#define CAVALL 5
-#define PEO 6
+typedef enum
+{
+	// S'assigna un nom per a cada color de la fitxa
+	C_NEGRE,
+	C_BLANC,
+	C_CAP
+}ColorFitxa;
 
-#define alcadaTauler 8
-#define ampladaTauler 8
 
-struct Posicio {
-	int x, y;
+// -+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+ Clase PosicioTauler
+class PosicioTauler
+{
+	public:
+	// Constructors
+	PosicioTauler();		// Falta fer i mirar si cal fer un constructor amb parametres
+
+	// Setters
+	void setPosicioX();		// Falta fer !!
+	void setPosicioY();		// Falta fer !!
+
+	// Getters
+	int getPosicioX();		// Falta fer !!
+	int getPosicioX();		// Falta fer !!
+
+	private:
+	int m_posX, m_posY;
 };
 
+// -+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+ Clase Fitxa
 class Fitxa
 {
 public:
@@ -27,21 +52,17 @@ public:
 	Fitxa();
 	
 	//setters
-
+	void setColor(int color) { m_color = color; } const
+	void setTipus(int tipus) { m_tipus = tipus; } const
+ 
 	//getters
-	Posicio getPosicio() { return m_pos; }
-	int getPosicioX() { return m_pos.x; }
-	int getPosicioY() { return m_pos.y; }
-	
-
 	int getColor() { return m_color; }
 	int getTipus() { return m_tipus; }
 
 	//metodes
-	void setFitxa(Posicio pos, int tipus, int color);
-
+	string fitxaToString();
+	
 private:
-	int m_tipus, m_color;
-	Posicio m_pos;
-
+	int m_color, m_tipus;
+	
 };

@@ -1,8 +1,10 @@
 #include "tauler.h"
 
+
+/*
 Tauler::Tauler()
 {
-    m_nPosicionsValides = 0;
+    
 }
 
 
@@ -23,14 +25,18 @@ bool Tauler::posicioValida(Posicio pos,  int diferenciaX, int diferenciaY, int c
 
 void Tauler::getValidMoves(Fitxa& fitxa)
 {
+
+*/
     /*
         switch case per a veure la fitxa 
         Dins de cada case mirar cap a on pot anar
         si es surt del tauler, si hi ha una altre fitxa
     */
+
+/*
     switch (fitxa.getTipus())
     {
-    // El rei es pot moure en totes direccions a una distància de 1 casella
+    // El rei es pot moure en totes direccions a una distï¿½ncia de 1 casella
     case REI:
         if (posicioValida(fitxa.getPosicio(), 1, 0, fitxa.getColor()))
         {
@@ -69,3 +75,4 @@ void Tauler::getValidMoves(Fitxa& fitxa)
 
 
 }
+*/
