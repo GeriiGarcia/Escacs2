@@ -1,3 +1,4 @@
+#pragma once
 
 #include <iostream>
 
@@ -5,7 +6,6 @@
 #define BLANCA 0
 #define NEGRA 1
 
-#define BUIT 0
 #define REI 1
 #define DAMA 2
 #define	TORRE 3
