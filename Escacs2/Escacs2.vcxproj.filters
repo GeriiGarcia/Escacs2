@@ -24,12 +24,18 @@
     <ClCompile Include="fitxa.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="PosicioTauler.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="fitxa.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="tauler.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="PosicioTauler.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

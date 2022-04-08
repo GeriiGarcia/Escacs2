@@ -2,9 +2,10 @@
 #include <fstream>
 #include <string>
 
+
 using namespace std;
 
-//hola guapo ;)
+
 
 void loadBoardFromFile(const string& nomFitxer, Tauler &tauler);
 int main()
@@ -12,13 +13,14 @@ int main()
 	Tauler tauler;
 	loadBoardFromFile("taulerInicial.txt", tauler);
 	
-	Posicio pos;
-	for (int i = 0; i < alcadaTauler; i++)
+	PosicioTauler pos;
+
+	for (int i = 0; i < FILES_TAULER; i++)
 	{
-		pos.x = i;
-		for (int j = 0; j < ampladaTauler; j++){
-			pos.y = j;
-			cout << tauler.getTipusFitxa(pos) << "\t";
+		pos.setPosicioX(i);
+		for (int j = 0; j < COLUMNES_TAULER; j++){
+			pos.setPosicioY(j);
+			cout << tauler.getFitxa(i,j) << "\t";
 		}
 		cout << endl;
 	}
@@ -33,7 +35,7 @@ void loadBoardFromFile(const string& nomFitxer, Tauler &tauler)
 	ifstream fitxer(nomFitxer);
 	string linea;
 
-	Posicio pos;
+	PosicioTauler pos;
 	int posVertical, posHoritzontal, tipus, color;
 
 	do{
@@ -41,35 +43,35 @@ void loadBoardFromFile(const string& nomFitxer, Tauler &tauler)
 		
 		// Mirem de quin color es
 		if(linea.at(0) == '0')
-			color = BLANCA;
+			color = C_BLANC;
 		else	
-			color = NEGRA;
+			color = C_NEGRE;
 		
 		// Mirem quin tipus de fitxa es
 		switch(linea.at(3))
 		{
 		case 'R':
-			tipus = REI;
+			tipus = T_REI;
 			break;
 
 		case 'D':
-			tipus = DAMA;
+			tipus = T_REINA;
 			break;
 
 		case 'T':
-			tipus = TORRE;
+			tipus = T_TORRE;
 			break;
 
 		case 'A':
-			tipus = ALFIL;
+			tipus = T_ALFIL;
 			break;
 			
 		case 'C':
-			tipus = CAVALL;
+			tipus = T_CABALL;
 			break;
 			
 		case 'P':
-			tipus = PEO;
+			tipus = T_PEO;
 			break;
 		}
 

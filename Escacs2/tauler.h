@@ -1,9 +1,11 @@
 #pragma once
 #include "fitxa.h"
+#include "PosicioTauler.h"
 
-#define MAX_POSICIONS_VALIDES 27 // con la reina en el centro (argumentar b�)
 #define FILES_TAULER 8
 #define COLUMNES_TAULER 8
+
+typedef vector<PosicioTauler> vectorDePosicions;
 
 class Tauler
 {
@@ -14,14 +16,18 @@ public:
     // Setters       
     
     // Getters
-
+    Fitxa getFitxa(int x, int y) { return m_tauler[x][y]; }
     // Metodes de la clase
     void llegirTaulerDeArxiu(const string& nomFitxer); // Cal copiar i modificar el metode loadFromFile de Source.cpp
-    // Falten implementar 3 metodes encara 
+    vectorDePosicions aconseguirPosicionsValides(const PosicioTauler& pos);
+    void moureFitxa(const PosicioTauler& posFrom, const PosicioTauler& posTo);
+    string taulaToString() const;
+    
+
 private:
     Fitxa m_tauler[COLUMNES_TAULER][FILES_TAULER];
+    
 };
-
 
 
 /*

@@ -1,6 +1,9 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
+#include <string>
+#include <fstream>
 using namespace std;
 
 // -+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+ enums
@@ -10,7 +13,7 @@ typedef enum
 	T_REI,
 	T_REINA,
 	T_TORRE,
-	T_ABAT,
+	T_ALFIL,
 	T_CABALL,
 	T_PEO,
 	T_BUIT
@@ -24,25 +27,6 @@ typedef enum
 	C_CAP
 }ColorFitxa;
 
-
-// -+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+ Clase PosicioTauler
-class PosicioTauler
-{
-	public:
-	// Constructors
-	PosicioTauler();		// Falta fer i mirar si cal fer un constructor amb parametres
-
-	// Setters
-	void setPosicioX();		// Falta fer !!
-	void setPosicioY();		// Falta fer !!
-
-	// Getters
-	int getPosicioX();		// Falta fer !!
-	int getPosicioX();		// Falta fer !!
-
-	private:
-	int m_posX, m_posY;
-};
 
 // -+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+ Clase Fitxa
 class Fitxa
@@ -61,8 +45,10 @@ public:
 
 	//metodes
 	string fitxaToString();
+	ostream& operator<<(const Fitxa& dt);
 	
 private:
+	PosicioTauler pos;
 	int m_color, m_tipus;
 	
 };
