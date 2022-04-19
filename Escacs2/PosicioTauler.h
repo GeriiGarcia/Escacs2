@@ -11,8 +11,8 @@ class PosicioTauler
 	void setPosicioY(int num) { m_posY = num; }		
 
 	// Getters
-	int getPosicioX() const { return m_posX; }
-	int getPosicioY() const { return m_posY; }
+	int getPosicioX() const { return m_posX; } 
+	int getPosicioY() const { return m_posY; } 
 
 	private:
 	int m_posX, m_posY;

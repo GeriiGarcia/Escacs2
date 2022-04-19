@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include "PosicioTauler.h"
 using namespace std;
 
 // -+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+ enum
@@ -36,17 +37,17 @@ public:
 	Fitxa();
 	
 	//setters
-	void setColor(int color) { m_color = color; } const
-	void setTipus(int tipus) { m_tipus = tipus; } const
+	void setColor(int color) { m_color = color; } 
+	void setTipus(int tipus) { m_tipus = tipus; } 
  
 	//getters
-	int getColor() { return m_color; }
-	int getTipus() { return m_tipus; }
+	int getColor() { return m_color; } const
+	int getTipus() { return m_tipus; } const
 
 	//metodes
 	string fitxaToString();
 	ostream& operator<<(const Fitxa& dt);
-	
+
 private:
 	PosicioTauler pos;
 	int m_color, m_tipus;

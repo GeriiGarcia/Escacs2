@@ -31,7 +31,7 @@ private:
 
 
 /*
-    Aqu� representem un tauler d'escacs amb les negres amunt i les blanques avall:
+    Aqui representem un tauler d'escacs amb les negres amunt i les blanques avall:
 
         i/j 0       1       2       3       4       5       6       7
         0   TORRE   CAVALL  ALFIL   DAMA    REI     ALFIL   CAVALL  TORRE

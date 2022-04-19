@@ -2,7 +2,8 @@
 
 Tauler::Tauler()
 {
-
+	/*ns fins a quin punt cal aixo, ja que la única cosa que hi ha per inicialitzar
+	es una fixa que ja s'inicialitza sola*/
 }
 
 vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
@@ -35,6 +36,7 @@ vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
 
 	case T_TORRE:
 		PosicioTauler posAuxiliar;
+		int i;
 		i = 0;
 		posAuxiliar.setPosicioY(pos.getPosicioY + i);
 		while (posicioValida(posAuxiliar, pos))
@@ -236,51 +238,28 @@ void Tauler::llegirTaulerDeArxiu(const string& nomFitxer)
 
 void Tauler::moureFitxa(const PosicioTauler& posFrom, const PosicioTauler& posTo)
 {
+	vectorDePosicions vector = aconseguirPosicionsValides(posFrom);
 
+	int i = 0;
+	while ((vector[i] != posTo) && (i < vector.size())) //es busca si en el vector existeix posTo
+	{
+		i++;
+	}
+	
+	if (i != vector.size() - 1) //si el while no ha arribat al final doncs es cambia la posicio de la fitxa
+	{
+		m_tauler[posFrom.getPosicioX()][posFrom.getPosicioY()].setPosicioX(posTo.getPosicioX()); //ns si esta be
+		m_tauler[posFrom.getPosicioX()][posFrom.getPosicioY()].setPosicioY(posTo.getPosicioY());
+	}
+	else
+	{
+		/*doncs dir que no s'ha trobat posTo i que escolleixi un altre posicio
+		  ns fins a quin punt es podria fer un bool i que en el main es repeteixi aquesta funcio fins
+		  que sigui true*/
+	}
 }
 
 string Tauler::taulaToString() const
 {
 
 }
-/*
-
-void Tauler::getValidMoves(PosicioTauler& fitxa)
-{
-
-	/*
-	switch case per a veure la fitxa
-	Dins de cada case mirar cap a on pot anar
-	si es surt del tauler, si hi ha una altre fitxa
-	*/
-
-
-	switch (fitxa.getTipus())
-	{
-	// El rei es pot moure en totes direccions a una distancia de 1 casella
-	case REI:
-		if (posicioValida(fitxa.getPosicio(), 1, 0, fitxa.getColor()))
-		{
-			m_posicionsValides[m_nPosicionsValides - 1].x = fitxa.getPosicioX();
-			m_posicionsValides[m_nPosicionsValides - 1].y = fitxa.getPosicioY();
-
-			m_nPosicionsValides++;
-		 }
-		break;
-	case DAMA:
-
-		break;
-	case TORRE:
-		break;
-	case ALFIL:
-		break;
-	case CAVALL:
-		break;
-	case PEO:
-		break;
-	default:
-		break;
-	}
-}
-
-*/
