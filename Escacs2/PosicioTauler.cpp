@@ -1,5 +1,5 @@
 #include "PosicioTauler.h"
-
+//a
 
 PosicioTauler::PosicioTauler()
 {
