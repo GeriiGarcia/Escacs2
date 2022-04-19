@@ -6,7 +6,7 @@
 #include <fstream>
 using namespace std;
 
-// -+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+ enums
+// -+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+ enum
 typedef enum
 {
 	// S'asigna un nom per a cada tipius de fitxa 
@@ -50,5 +50,6 @@ public:
 private:
 	PosicioTauler pos;
 	int m_color, m_tipus;
+	bool m_moguda;
 	
 };

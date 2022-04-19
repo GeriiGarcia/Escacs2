@@ -5,6 +5,7 @@ Fitxa::Fitxa()
 {
 	m_color = C_CAP;
 	m_tipus = T_BUIT;
+	m_moguda = false;
 }
 
 
