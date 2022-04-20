@@ -1,29 +1,13 @@
 #include "tauler.h"
-#include <fstream>
-#include <string>
 
 
-using namespace std;
-
-void loadBoardFromFile(const string& nomFitxer, Tauler &tauler);
 
 int main()
 {
 	Tauler tauler;
-	loadBoardFromFile("taulerInicial.txt", tauler);
+	tauler.llegirTaulerDeArxiu("taulerInicial.txt");
 	
-	PosicioTauler pos;
-
-	for (int i = 0; i < FILES_TAULER; i++)
-	{
-		pos.setPosicioX(i);
-		for (int j = 0; j < COLUMNES_TAULER; j++){
-			pos.setPosicioY(j);
-			//cout << tauler.getFitxa(i,j) << "\t";
-		}
-		cout << endl;
-	}
-
+		
 	return 0;
 }
 
