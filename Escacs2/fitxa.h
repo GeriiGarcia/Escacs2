@@ -42,12 +42,12 @@ public:
 	void setTipus(int moguda) { m_moguda = moguda; } 
 	
 	//getters
-	int getColor() { return m_color; } const
-	int getTipus() { return m_tipus; } const
-	int getMoguda() { return m_moguda; } const
+	int getColor() const { return m_color; } 
+	int getTipus() const { return m_tipus; } 
+	int getMoguda() const { return m_moguda; } 
 
 	//metodes
-	string fitxaToString();
+	string fitxaToString() const;
 	ostream& operator<<(const Fitxa& dt);
 
 private:

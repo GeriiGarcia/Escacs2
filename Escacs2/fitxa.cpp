@@ -10,7 +10,7 @@ Fitxa::Fitxa()
 
 
 // ----------------------- Metodes
-string Fitxa::fitxaToString()
+string Fitxa::fitxaToString() const
 {
 	string str = "";
 
@@ -31,31 +31,31 @@ string Fitxa::fitxaToString()
 	switch(m_tipus)
 	{
 		case T_REI:
-			str.append("");
+			str.append("R");
 		break;
 
 		case T_REINA:
-			str.append("");
+			str.append("D");
 		break;
 
 		case T_TORRE:
-			str.append("");
+			str.append("T");
 		break;
 
 		case T_CABALL:
-			str.append("");
+			str.append("C");
 		break;
 
 		case T_ALFIL:
-			str.append("");
+			str.append("A");
 		break;
 
 		case T_PEO:
-			str.append("");
+			str.append("P");
 		break; 
 
 		default:
-			str.append("");
+			str.append("_");
 	}
 	
 	return str;
