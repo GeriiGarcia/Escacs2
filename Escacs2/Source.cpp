@@ -19,7 +19,7 @@ int main()
 		pos.setPosicioX(i);
 		for (int j = 0; j < COLUMNES_TAULER; j++){
 			pos.setPosicioY(j);
-			cout << tauler.getFitxa(i,j) << "\t";
+			//cout << tauler.getFitxa(i,j) << "\t";
 		}
 		cout << endl;
 	}
@@ -29,7 +29,7 @@ int main()
 
 
 // Carreguem una partida des de un arxiu ".txt"
-void loadBoardFromFile(const string& nomFitxer, Tauler &tauler) 
+/*void loadBoardFromFile(const string& nomFitxer, Tauler &tauler) 
 {
 	ifstream fitxer(nomFitxer);
 	string linea;
@@ -139,5 +139,5 @@ void loadBoardFromFile(const string& nomFitxer, Tauler &tauler)
 	}while(!fitxer.eof());
 
 	fitxer.close();
-}
+}*/
 

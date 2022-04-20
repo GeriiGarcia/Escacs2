@@ -22,7 +22,12 @@ public:
     vectorDePosicions aconseguirPosicionsValides(const PosicioTauler& pos);
     void moureFitxa(const PosicioTauler& posFrom, const PosicioTauler& posTo);
     string taulaToString() const;
-    
+
+    // Metodes auxiliars
+    bool posicioValida(PosicioTauler posAuxiliar, PosicioTauler pos);
+    int getColorFitxa(PosicioTauler pos);
+    int getTipusFitxa(PosicioTauler pos);
+    int getMogudaFitxa(PosicioTauler pos);
 
 private:
     Fitxa m_tauler[COLUMNES_TAULER][FILES_TAULER];

@@ -8,8 +8,16 @@ Tauler::Tauler()
 
 vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
 {
-	vectorDePosicions vectorPos;
+	/*
+	REI:			REINA:			TORRE:			CABALL			ALFIL:		 	CABALL			
+	- - - - -		X - X - X		- - X - -		- X - X -		X - - - X		- - - - -		
+	- X X X -		- X X X -		- - X - -		X - - - X		- X - X -		- - X - -	
+	- X R X -		X X R X X		X X T X X		- - C - -		- - A - -		- X X X -	
+	- X X X -		- X X X -		- - X - -		X - - - X		- X - X -		- - P - -	
+	- - - - -		X - X - X		- - X - -		- X - X -		X - - - X		- - - - -	
+	*/
 	
+	vectorDePosicions vectorPos;
 
 	switch (m_tauler[pos.getPosicioX()][pos.getPosicioY()].getTipus())
 	{
@@ -38,69 +46,81 @@ vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
 		PosicioTauler posAuxiliar;
 		int i;
 		i = 0;
-		posAuxiliar.setPosicioY(pos.getPosicioY + i);
+		posAuxiliar.setPosicioY(pos.getPosicioY() + i);
 		while (posicioValida(posAuxiliar, pos))
 		{
 			i++;
-			posAuxiliar.setPosicioY(pos.getPosicioY + i);
+			posAuxiliar.setPosicioY(pos.getPosicioY() + i);
 			vectorPos.push_back(posAuxiliar);
 		}
 
 		i = 0;
-		posAuxiliar.setPosicioY(pos.getPosicioY + i);
+		posAuxiliar.setPosicioY(pos.getPosicioY() + i);
 		while (posicioValida(posAuxiliar, pos))
 		{
 			i--;
-			posAuxiliar.setPosicioY(pos.getPosicioY + i);
+			posAuxiliar.setPosicioY(pos.getPosicioY() + i);
 			vectorPos.push_back(posAuxiliar);
 		}
 
 		i = 0;
-		posAuxiliar.setPosicioX(pos.getPosicioX + i);
+		posAuxiliar.setPosicioX(pos.getPosicioX() + i);
 		while (posicioValida(posAuxiliar, pos))
 		{
 			i++;
-			posAuxiliar.setPosicioX(pos.getPosicioX + i);
+			posAuxiliar.setPosicioX(pos.getPosicioX() + i);
 			vectorPos.push_back(posAuxiliar);
 		}
 
 		i = 0;
-		posAuxiliar.setPosicioX(pos.getPosicioX + i);
+		posAuxiliar.setPosicioX(pos.getPosicioX() + i);
 		while (posicioValida(posAuxiliar, pos))
 		{
 			i--;
-			posAuxiliar.setPosicioX(pos.getPosicioX + i);
+			posAuxiliar.setPosicioX(pos.getPosicioX() + i);
 			vectorPos.push_back(posAuxiliar);
 		}
 		break;
 
-	case T_CABALL:
+	case T_CABALL: // ----------------------------------------------- CABALL
+		PosicioTauler posAuxiliar;
 		break;
 
 	case T_ALFIL:
 		break;
 
-	case T_PEO:
+
+	case T_PEO: // -------------------------------------------------- PEO
 		PosicioTauler posAuxiliar;
 		posAuxiliar.setPosicioX(pos.getPosicioX());
 
 		// fem una variable direcció que ens indiqui a quina direccio es mou el peo (depenent del color)
 		int direccio = 1;
-		if(m_tauler[pos.getPosicioX()][pos.getPosicioY()].getColor() == C_BLANC)
-			dirrecio = -1;
+		if(getColorFitxa(pos) == C_BLANC)
+			direccio = -1;
 
-
+		// analitzem la posició frontal
 		posAuxiliar.setPosicioY(pos.getPosicioY() + 1 * direccio);
-		if(posicioValida(posAuxiliar, pos) && m_tauler[posAuxiliar.getPosicioX()][posAuxiliar.getPosicioY()].getColor() == C_CAP)
+		if(posicioValida(posAuxiliar, pos) && getColorFitxa(posAuxiliar) == C_CAP)
 			vectorPos.push_back(posAuxiliar);
 		
-		posAuxiliar.setPosicioY(pos.getPosicioY() + 2 * direccio);
-		if(posicioValida(posAuxiliar, pos) && m_tauler[posAuxiliar.getPosicioX()][posAuxiliar.getPosicioY()].getColor() == C_CAP)
+
+		// analitzem les posicions diagonals frontals 
+		posAuxiliar.setPosicioX(pos.getPosicioX() - 1);
+		if(posicioValida(posAuxiliar, pos) && getColorFitxa(posAuxiliar) != getColorFitxa(pos))
+			vectorPos.push_back(posAuxiliar);
+		
+		posAuxiliar.setPosicioX(pos.getPosicioX() + 1);
+		if(posicioValida(posAuxiliar, pos) && getColorFitxa(posAuxiliar) != getColorFitxa(pos))
 			vectorPos.push_back(posAuxiliar);
 
-		posAuxiliar.setPosicioY(pos.getPosicioY() + 1 * direccio);
-		if(posicioValida(posAuxiliar, pos) && m_tauler[posAuxiliar.getPosicioX()][posAuxiliar.getPosicioY()].getColor() != m_tauler[pos.getPosicioX()][pos.getPosicioY()].getColor())
+
+		// analitzem la 2a posició frontal
+		posAuxiliar.setPosicioY(pos.getPosicioY() + 2 * direccio);
+		if(posicioValida(posAuxiliar, pos) && getColorFitxa(posAuxiliar) == C_CAP && !getMogudaFitxa(pos))
 			vectorPos.push_back(posAuxiliar);
+
+		
 		break;
 	}
 
@@ -112,16 +132,33 @@ bool Tauler::posicioValida(PosicioTauler posAuxiliar, PosicioTauler pos)
 	// Aquest procediment analitza una posició i mira si aquesta entra dins del tauler i si hi ha una fitxa del mateix color
 	bool esValida = true;
 
-	if(posAuxiliar.getPosicioX() > ampladaTauler - 1 || posAuxiliar.getPosicioX() < 0 || posAuxiliar.getPosicioY > alcadaTauler - 1 ||  posAuxiliar.getPosicioY < 0)
+	if(posAuxiliar.getPosicioX() > COLUMNES_TAULER - 1 || posAuxiliar.getPosicioX() < 0 || posAuxiliar.getPosicioY() > FILES_TAULER - 1 ||  posAuxiliar.getPosicioY() < 0)
 		esValida = false;
-	else if(m_tauler[posAuxiliar.getPosicioX()][posAuxiliar.getPosicioY()].getTipus() != BUIT && m_tauler[posAuxiliar.getPosicioX()][posAuxiliar.getPosicioY()].getColor() == m_tauler[pos.getPosicioX()][pos.getPosicioY()].getColor())
+	else if(getTipusFitxa(posAuxiliar) != T_BUIT && getColorFitxa(posAuxiliar) == getColorFitxa(pos))
 		esValida = false;
 
 	return esValida;
 
 }
 
+// funcions auxiliars que ens permeten jugar amb les fitxes amb l'objectiu d'acotar codi
+int Tauler::getColorFitxa(PosicioTauler pos)
+{
+	return m_tauler[pos.getPosicioX()][pos.getPosicioY()].getColor();
+}
 
+int Tauler::getTipusFitxa(PosicioTauler pos)
+{
+	return m_tauler[pos.getPosicioX()][pos.getPosicioY()].getTipus();
+}
+
+int Tauler::getMogudaFitxa(PosicioTauler pos)
+{
+	return m_tauler[pos.getPosicioX()][pos.getPosicioY()].getMoguda();
+}
+
+
+// Funcio per a llegir un tauler d'un arxiu
 void Tauler::llegirTaulerDeArxiu(const string& nomFitxer)
 {
 	PosicioTauler pos;
@@ -241,7 +278,7 @@ void Tauler::moureFitxa(const PosicioTauler& posFrom, const PosicioTauler& posTo
 	vectorDePosicions vector = aconseguirPosicionsValides(posFrom);
 
 	int i = 0;
-	while ((vector[i] != posTo) && (i < vector.size())) //es busca si en el vector existeix posTo
+	while ((vector.at(i) != posTo) && (i < vector.size())) //es busca si en el vector existeix posTo
 	{
 		i++;
 	}

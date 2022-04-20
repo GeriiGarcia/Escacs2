@@ -39,10 +39,12 @@ public:
 	//setters
 	void setColor(int color) { m_color = color; } 
 	void setTipus(int tipus) { m_tipus = tipus; } 
- 
+	void setTipus(int moguda) { m_moguda = moguda; } 
+	
 	//getters
 	int getColor() { return m_color; } const
 	int getTipus() { return m_tipus; } const
+	int getMoguda() { return m_moguda; } const
 
 	//metodes
 	string fitxaToString();
