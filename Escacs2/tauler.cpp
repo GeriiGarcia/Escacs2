@@ -306,7 +306,7 @@ void Tauler::moureFitxa(const PosicioTauler& posFrom, const PosicioTauler& posTo
 	vectorDePosicions vector = aconseguirPosicionsValides(posFrom);
 
 	int i = 0;
-	while ((vector.at(i) != posTo) && (i < vector.size())) //es busca si en el vector existeix posTo
+	while ((vector[i] != posTo) && (i < vector.size())) //es busca si en el vector existeix posTo
 	{
 		i++;
 	}
