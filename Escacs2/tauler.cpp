@@ -324,18 +324,28 @@ void Tauler::moureFitxa(const PosicioTauler& posFrom, const PosicioTauler& posTo
 	}
 }
 
+// funció on guardem tota la taula en un string
 string Tauler::taulaToString() const
 {
+	string taulaStr = "";
+
 	for(int fila = 0; fila > FILES_TAULER; fila++)
 	{
-		// imprimim el nombre de la columna
-		cout << 8 - fila << " ";
+		// afegim els noms de la fila
+		taulaStr.append(to_string(8 - fila));
 
-		for(int j = 0; j < COLUMNES_TAULER; j++)
+		// afegim columna a columna les fitxes
+		for(int columna = 0; columna < COLUMNES_TAULER; columna++)
 		{
-			// imprimir fitxa
+			taulaStr.append(" ");
+			taulaStr.append(m_tauler[fila][columna].fitxaToString());
 		}
 			
+		taulaStr.append("\n");
 
 	}
+
+	// afegim els noms de les files
+	taulaStr.append("  a  b  c  d  e  f  g  h");
+	return taulaStr;
 }

@@ -14,6 +14,9 @@ class PosicioTauler
 	int getPosicioX() const { return m_posX; } 
 	int getPosicioY() const { return m_posY; } 
 
+	// Metodes
+	// hauriem de fer una funció que llegeixi una posició del usuari en format string(ex: wP (peo blanc), bK (rei negre))
+
 	private:
 	int m_posX, m_posY;
 };

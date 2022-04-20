@@ -31,11 +31,11 @@ string Fitxa::fitxaToString() const
 	switch(m_tipus)
 	{
 		case T_REI:
-			str.append("R");
+			str.append("K");
 		break;
 
 		case T_REINA:
-			str.append("D");
+			str.append("Q");
 		break;
 
 		case T_TORRE:
@@ -43,11 +43,11 @@ string Fitxa::fitxaToString() const
 		break;
 
 		case T_CABALL:
-			str.append("C");
+			str.append("H");
 		break;
 
 		case T_ALFIL:
-			str.append("A");
+			str.append("B");
 		break;
 
 		case T_PEO:
