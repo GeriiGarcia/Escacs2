@@ -3,6 +3,15 @@
 TO DO:
 
  - Fitxa.cpp -> fitxaToString()
- - Caldria fer un fitxer PosicioTauler.h i PosicioTauler.cpp
- - tauler.cpp: continuar vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler& pos) 
- - tauler.cpp: fer funcio bool posicioValida(int afegitX, int afegitY)
+ - tauler.cpp -> aconseguirPosicionsValides() -> Torre
+                                              -> Alfil
+                                              -> Peo
+                                              -> Cavall
+                                              -> Reina
+ - tauler.cpp -> moureFitxa()
+ - tauler.cpp -> taulaToString() NOTA: caldria fer primer fitxaToString();
+ - source.cpp -> mirar que s'ha de fer i fer-ho
+ - llegir lo de la 1a entrega
+
+OPTIMITZAR/FER MES MACO
+ - tauler.cpp -> fer funcio per a dir si el color d'una fitza es el mateix que un altre  
