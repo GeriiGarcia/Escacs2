@@ -9,7 +9,7 @@ Tauler::Tauler()
 vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
 {
 	/*
-	REI:			REINA:			TORRE:			CABALL			ALFIL:		 	CABALL			
+	REI:			REINA:			TORRE:			CABALL			ALFIL:		 	PEO			
 	- - - - -		X - X - X		- - X - -		- X - X -		X - - - X		- - - - -		
 	- X X X -		- X X X -		- - X - -		X - - - X		- X - X -		- - X - -	
 	- X R X -		X X R X X		X X T X X		- - C - -		- - A - -		- X X X -	
