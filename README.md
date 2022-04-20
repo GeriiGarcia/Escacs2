@@ -5,8 +5,8 @@ TO DO:
  - Fitxa.cpp -> fitxaToString()
  - tauler.cpp -> aconseguirPosicionsValides() -> Torre
                                               -> Alfil
-                                              -> Peo
-                                              -> Cavall
+                                              -> Peo    # FET
+                                              -> Cavall # FET
                                               -> Reina
  - tauler.cpp -> moureFitxa()
  - tauler.cpp -> taulaToString() NOTA: caldria fer primer fitxaToString();
