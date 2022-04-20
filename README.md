@@ -2,7 +2,7 @@
 
 TO DO:
 
- - Fitxa.cpp -> fitxaToString()
+ - Fitxa.cpp -> fitxaToString()  # FET
  - tauler.cpp -> aconseguirPosicionsValides() -> Torre
                                               -> Alfil
                                               -> Peo    # FET
