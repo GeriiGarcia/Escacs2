@@ -18,6 +18,7 @@ vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
 	*/
 	
 	vectorDePosicions vectorPos;
+	PosicioTauler posAuxiliar;
 
 	switch (m_tauler[pos.getPosicioX()][pos.getPosicioY()].getTipus())
 	{
@@ -43,7 +44,7 @@ vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
 		break;
 
 	case T_TORRE:
-		PosicioTauler posAuxiliar;
+		//PosicioTauler posAuxiliar;
 		int i;
 		i = 0;
 		posAuxiliar.setPosicioY(pos.getPosicioY() + i);
@@ -83,7 +84,7 @@ vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
 		break;
 
 	case T_CABALL: // ----------------------------------------------- CABALL
-		PosicioTauler posAuxiliar;
+		//PosicioTauler posAuxiliar;
 
 		// analitzem les posicions per columnes i només en les que es pot moure el caball
 		for(int i = -2; i <= 2; i++)
@@ -119,7 +120,7 @@ vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
 
 
 	case T_PEO: // -------------------------------------------------- PEO
-		PosicioTauler posAuxiliar;
+		//PosicioTauler posAuxiliar;
 		posAuxiliar.setPosicioX(pos.getPosicioX());
 
 		// fem una variable direcció que ens indiqui a quina direccio es mou el peo (depenent del color)
@@ -151,7 +152,7 @@ vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
 		
 		break;
 	}
-
+	return vectorPos;
 }
 
 
@@ -191,18 +192,23 @@ void Tauler::llegirTaulerDeArxiu(const string& nomFitxer)
 {
 	PosicioTauler pos;
 	int posVertical, posHoritzontal, tipus, color;
-
-	ifstream fitxer(nomFitxer);
 	string linea;
 
-	do {
-		getline(fitxer, linea);
+	ifstream fitxer(nomFitxer);
+	fitxer.open(nomFitxer);
 
+	std::getline(fitxer, linea);
+
+	do {
+	
 		// Mirem de quin color es
 		if (linea.at(0) == '0')
 			color = C_BLANC;
-		else
+		else if(linea.at(0) == '1')
 			color = C_NEGRE;
+		else
+			color = C_CAP;
+
 
 		// Mirem quin tipus de fitxa es
 		switch (linea.at(3))
@@ -296,11 +302,13 @@ void Tauler::llegirTaulerDeArxiu(const string& nomFitxer)
 		m_tauler[posVertical][posHoritzontal].setColor(color);
 		m_tauler[posVertical][posHoritzontal].setTipus(tipus);
 		
+		getline(fitxer, linea);
 	} while (!fitxer.eof());
 
 	fitxer.close();
 }
 
+/*
 void Tauler::moureFitxa(const PosicioTauler& posFrom, const PosicioTauler& posTo)
 {
 	vectorDePosicions vector = aconseguirPosicionsValides(posFrom);
@@ -318,11 +326,11 @@ void Tauler::moureFitxa(const PosicioTauler& posFrom, const PosicioTauler& posTo
 	}
 	else
 	{
-		/*doncs dir que no s'ha trobat posTo i que escolleixi un altre posicio
+		doncs dir que no s'ha trobat posTo i que escolleixi un altre posicio
 		  ns fins a quin punt es podria fer un bool i que en el main es repeteixi aquesta funcio fins
-		  que sigui true*/
+		  que sigui true
 	}
-}
+}*/
 
 // funció on guardem tota la taula en un string
 string Tauler::taulaToString() const

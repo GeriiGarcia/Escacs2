@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 #include "PosicioTauler.h"
+
 using namespace std;
 
 // -+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+ enum
@@ -39,7 +40,7 @@ public:
 	//setters
 	void setColor(int color) { m_color = color; } 
 	void setTipus(int tipus) { m_tipus = tipus; } 
-	void setTipus(int moguda) { m_moguda = moguda; } 
+	void setMoguda(int moguda) { m_moguda = moguda; } 
 	
 	//getters
 	int getColor() const { return m_color; } 
@@ -48,7 +49,7 @@ public:
 
 	//metodes
 	string fitxaToString() const;
-	ostream& operator<<(const Fitxa& dt);
+	
 
 private:
 	PosicioTauler pos;

@@ -61,8 +61,5 @@ string Fitxa::fitxaToString() const
 	return str;
 }
 
-ostream& Fitxa::operator<<(const Fitxa& dt)
-{
-	cout << dt.m_tipus;
-}
+
 
