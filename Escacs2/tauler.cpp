@@ -23,12 +23,12 @@ vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
 	{
 	case T_REI:
 		// analitzem cada posició que hi ha al voltant del rei i ens quedem amb les vàlides
-		for(int i = -1; i < 2; i++)
+		for(int i = -1; i <= 1; i++)
 		{
 			PosicioTauler posAuxiliar;
 			posAuxiliar.setPosicioX(pos.getPosicioX() + i);
 			
-			for(int j = -1; j < 2; j++)
+			for(int j = -1; j <= 1; j++)
 			{
 				posAuxiliar.setPosicioY(pos.getPosicioY() + j);
 				
@@ -84,6 +84,34 @@ vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
 
 	case T_CABALL: // ----------------------------------------------- CABALL
 		PosicioTauler posAuxiliar;
+
+		// analitzem les posicions per columnes i només en les que es pot moure el caball
+		for(int i = -2; i <= 2; i++)
+		{
+			posAuxiliar.setPosicioX(pos.getPosicioX() + i);
+
+			if(i == -2 || i == 2)
+			{
+				posAuxiliar.setPosicioY(pos.getPosicioY() - 1);
+				if(posicioValida(posAuxiliar, pos))
+					vectorPos.push_back(posAuxiliar);
+
+				posAuxiliar.setPosicioY(pos.getPosicioY() + 1);
+				if(posicioValida(posAuxiliar, pos))
+					vectorPos.push_back(posAuxiliar);
+			}
+			else if (i == -1 || i == 1)
+			{
+				posAuxiliar.setPosicioY(pos.getPosicioY() - 2);
+				if(posicioValida(posAuxiliar, pos))
+					vectorPos.push_back(posAuxiliar);
+
+				posAuxiliar.setPosicioY(pos.getPosicioY() + 2);
+				if(posicioValida(posAuxiliar, pos))
+					vectorPos.push_back(posAuxiliar);
+			}
+		}
+
 		break;
 
 	case T_ALFIL:
@@ -127,9 +155,9 @@ vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
 }
 
 
+// Aquest procediment analitza una posició i mira si aquesta entra dins del tauler i si hi ha una fitxa del mateix color
 bool Tauler::posicioValida(PosicioTauler posAuxiliar, PosicioTauler pos)
 {
-	// Aquest procediment analitza una posició i mira si aquesta entra dins del tauler i si hi ha una fitxa del mateix color
 	bool esValida = true;
 
 	if(posAuxiliar.getPosicioX() > COLUMNES_TAULER - 1 || posAuxiliar.getPosicioX() < 0 || posAuxiliar.getPosicioY() > FILES_TAULER - 1 ||  posAuxiliar.getPosicioY() < 0)
