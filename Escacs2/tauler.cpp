@@ -313,7 +313,7 @@ void Tauler::moureFitxa(const PosicioTauler& posFrom, const PosicioTauler& posTo
 	
 	if (i != vector.size() - 1) //si el while no ha arribat al final doncs es cambia la posicio de la fitxa
 	{
-		m_tauler[posFrom.getPosicioX()][posFrom.getPosicioY()].setPosicioX(posTo.getPosicioX()); //ns si esta be
+		m_tauler[posFrom.getPosicioX()][posFrom.getPosicioY()].setPosicioX(posTo.getPosicioX()); //ns si esta be. No bro, no ho està
 		m_tauler[posFrom.getPosicioX()][posFrom.getPosicioY()].setPosicioY(posTo.getPosicioY());
 	}
 	else
@@ -326,5 +326,16 @@ void Tauler::moureFitxa(const PosicioTauler& posFrom, const PosicioTauler& posTo
 
 string Tauler::taulaToString() const
 {
+	for(int fila = 0; fila > FILES_TAULER; fila++)
+	{
+		// imprimim el nombre de la columna
+		cout << 8 - fila << " ";
 
+		for(int j = 0; j < COLUMNES_TAULER; j++)
+		{
+			// imprimir fitxa
+		}
+			
+
+	}
 }
