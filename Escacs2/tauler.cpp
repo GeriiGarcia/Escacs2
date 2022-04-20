@@ -190,17 +190,18 @@ int Tauler::getMogudaFitxa(PosicioTauler pos)
 // Funcio per a llegir un tauler d'un arxiu
 void Tauler::llegirTaulerDeArxiu(const string& nomFitxer)
 {
-	PosicioTauler pos;
-	int posVertical, posHoritzontal, tipus, color;
+
+	ifstream fitxer(nomFitxer.c_str());
 	string linea;
 
-	ifstream fitxer(nomFitxer);
-	fitxer.open(nomFitxer);
-
-	std::getline(fitxer, linea);
+	PosicioTauler pos;
+	int posVertical, posHoritzontal, tipus, color;
 
 	do {
-	
+		if (fitxer.is_open())
+		{
+			std::getline(fitxer, linea);
+		}
 		// Mirem de quin color es
 		if (linea.at(0) == '0')
 			color = C_BLANC;
@@ -208,6 +209,7 @@ void Tauler::llegirTaulerDeArxiu(const string& nomFitxer)
 			color = C_NEGRE;
 		else
 			color = C_CAP;
+
 
 
 		// Mirem quin tipus de fitxa es
@@ -302,7 +304,6 @@ void Tauler::llegirTaulerDeArxiu(const string& nomFitxer)
 		m_tauler[posVertical][posHoritzontal].setColor(color);
 		m_tauler[posVertical][posHoritzontal].setTipus(tipus);
 		
-		getline(fitxer, linea);
 	} while (!fitxer.eof());
 
 	fitxer.close();
