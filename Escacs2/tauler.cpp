@@ -4,7 +4,7 @@ Tauler::Tauler()
 {
 	/*ns fins a quin punt cal aixo, ja que la única cosa que hi ha per inicialitzar
 	es una fixa que ja s'inicialitza sola*/
-}
+} 
 
 vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
 {
@@ -40,8 +40,8 @@ vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
 
 		break;
 
-	case T_REINA:
-
+	case T_REINA: //amb diagonal NE em refereixo a la diagonal de adalt a la dreta ns  si m'entens rbro v 
+	v
 		int i = 0;
 		posAuxiliar.setPosicioX(pos.getPosicioX() + i);   //diagonal NE
 		posAuxiliar.setPosicioY(pos.getPosicioY() - i);
