@@ -129,6 +129,39 @@ vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
 		}
 
 		int i = 0;
+		posAuxiliar.setPosicioX(pos.getPosicioX() - i);   //diagonal NO
+		posAuxiliar.setPosicioY(pos.getPosicioY() - i);
+		while (posicioValida(posAuxiliar, pos))
+		{
+			i++;
+			posAuxiliar.setPosicioX(pos.getPosicioX() - i);
+			posAuxiliar.setPosicioY(pos.getPosicioY() - i);
+			vectorPos.push_back(posAuxiliar);
+		}
+
+		int i = 0;
+		posAuxiliar.setPosicioX(pos.getPosicioX() - i);   //diagonal SO
+		posAuxiliar.setPosicioY(pos.getPosicioY() + i);
+		while (posicioValida(posAuxiliar, pos))
+		{
+			i++;
+			posAuxiliar.setPosicioX(pos.getPosicioX() - i);
+			posAuxiliar.setPosicioY(pos.getPosicioY() + i);
+			vectorPos.push_back(posAuxiliar);
+		}
+
+		int i = 0;
+		posAuxiliar.setPosicioX(pos.getPosicioX() + i);   //diagonal SE
+		posAuxiliar.setPosicioY(pos.getPosicioY() + i);
+		while (posicioValida(posAuxiliar, pos))
+		{
+			i++;
+			posAuxiliar.setPosicioX(pos.getPosicioX() + i);
+			posAuxiliar.setPosicioY(pos.getPosicioY() + i);
+			vectorPos.push_back(posAuxiliar);
+		}
+
+		int i = 0;
 		posAuxiliar.setPosicioX(pos.getPosicioX() + i);   //horizontal E
 		while (posicioValida(posAuxiliar, pos))
 		{
