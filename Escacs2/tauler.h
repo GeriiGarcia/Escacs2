@@ -20,7 +20,7 @@ public:
     // Metodes de la clase
     void llegirTaulerDeArxiu(const string& nomFitxer); // Cal copiar i modificar el metode loadFromFile de Source.cpp
     vectorDePosicions aconseguirPosicionsValides(const PosicioTauler& pos);
-    //void moureFitxa(const PosicioTauler& posFrom, const PosicioTauler& posTo);
+    void moureFitxa(const PosicioTauler& posFrom, const PosicioTauler& posTo);
     string taulaToString() const;
 
     // Metodes auxiliars

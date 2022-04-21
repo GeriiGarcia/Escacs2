@@ -116,6 +116,55 @@ vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
 		break;
 
 	case T_ALFIL:
+
+		int i = 0;
+		posAuxiliar.setPosicioX(pos.getPosicioX() + i);   //diagonal NE
+		posAuxiliar.setPosicioY(pos.getPosicioY() - i);
+		while (posicioValida(posAuxiliar, pos))
+		{
+			i++;
+			posAuxiliar.setPosicioX(pos.getPosicioX() + i);
+			posAuxiliar.setPosicioY(pos.getPosicioY() - i);
+			vectorPos.push_back(posAuxiliar);
+		}
+
+		int i = 0;
+		posAuxiliar.setPosicioX(pos.getPosicioX() + i);   //horizontal E
+		while (posicioValida(posAuxiliar, pos))
+		{
+			i++;
+			posAuxiliar.setPosicioX(pos.getPosicioX() + i);
+			vectorPos.push_back(posAuxiliar);
+		}
+
+		int i = 0;
+		posAuxiliar.setPosicioX(pos.getPosicioX() - i);   //horizontal O
+		while (posicioValida(posAuxiliar, pos))
+		{
+			i++;
+			posAuxiliar.setPosicioX(pos.getPosicioX() - i);
+			vectorPos.push_back(posAuxiliar);
+		}
+
+		int i = 0;
+		posAuxiliar.setPosicioY(pos.getPosicioY() + i);   //Vertical N
+		while (posicioValida(posAuxiliar, pos))
+		{
+			i++;
+			posAuxiliar.setPosicioY(pos.getPosicioY() + i);
+			vectorPos.push_back(posAuxiliar);
+		}
+
+		int i = 0;
+		posAuxiliar.setPosicioY(pos.getPosicioY() - i);   //Vertical S
+		while (posicioValida(posAuxiliar, pos))
+		{
+			i++;
+			posAuxiliar.setPosicioY(pos.getPosicioY() - i);
+			vectorPos.push_back(posAuxiliar);
+		}
+
+
 		break;
 
 
