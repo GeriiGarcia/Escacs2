@@ -30,11 +30,11 @@ public:
     int getMogudaFitxa(PosicioTauler pos);
     bool posicioDinsVector(const PosicioTauler& pos, vectorDePosicions& vectorPos);
 
-    void AnalisiDiagonals(PosicioTauler& posAuxiliar, PosicioTauler& pos, vectorDePosicions& vectorPos);
-    void AnalisiVerticals(PosicioTauler& posAuxiliar, PosicioTauler& pos, vectorDePosicions& vectorPos);
-    void AnalisiHoritzontals(PosicioTauler& posAuxiliar, PosicioTauler& pos, vectorDePosicions& vectorPos);
-    void analisiPeo(PosicioTauler& posAuxiliar, PosicioTauler& pos, vectorDePosicions& vectorPos);
-
+    void analisiDiagonals(const PosicioTauler& posAuxiliar, const PosicioTauler& pos, vectorDePosicions& vectorPos) ;
+    void analisiVerticals(const PosicioTauler& posAuxiliar, const PosicioTauler& pos, vectorDePosicions& vectorPos);
+    void analisiHoritzontals(const PosicioTauler& posAuxiliar, const PosicioTauler& pos, vectorDePosicions& vectorPos);
+    void analisiPeo(const PosicioTauler posAuxiliar, const PosicioTauler pos, vectorDePosicions& vectorPos);
+    void analisiCavall(PosicioTauler& posAuxiliar, PosicioTauler& pos, vectorDePosicions& vectorPos); 
 private:
     Fitxa m_tauler[COLUMNES_TAULER][FILES_TAULER];
     

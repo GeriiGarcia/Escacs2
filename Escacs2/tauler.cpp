@@ -41,56 +41,32 @@ vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
 
 	case T_REINA: //amb diagonal NE em refereixo a la diagonal de adalt a la dreta ns  si m'entens rbro v 
 	
-		AnalisiDiagonals(posAuxiliar, pos, vectorPos);
+		analisiDiagonals(posAuxiliar, pos, vectorPos);
 
-		AnalisiHoritzontals(posAuxiliar, pos, vectorPos);
+		analisiHoritzontals(posAuxiliar, pos, vectorPos);
 
-		AnalisiVerticals(posAuxiliar, pos, vectorPos);
+		analisiVerticals(posAuxiliar, pos, vectorPos);
 
 		break;
 
 	case T_TORRE:
 
-		AnalisiHoritzontals(posAuxiliar, pos, vectorPos);
-		AnalisiVerticals(posAuxiliar, pos, vectorPos);
+		analisiHoritzontals(posAuxiliar, pos, vectorPos);
+
+		analisiVerticals(posAuxiliar, pos, vectorPos);
 
 		break;
 
 	case T_CABALL: // ----------------------------------------------- CABALL
 		//PosicioTauler posAuxiliar;
 
-		// analitzem les posicions per columnes i només en les que es pot moure el caball
-		for(int i = -2; i <= 2; i++)
-		{
-			posAuxiliar.setPosicioX(pos.getPosicioX() + i);
-
-			if(i == -2 || i == 2)
-			{
-				posAuxiliar.setPosicioY(pos.getPosicioY() - 1);
-				if(posicioValida(posAuxiliar, pos))
-					vectorPos.push_back(posAuxiliar);
-
-				posAuxiliar.setPosicioY(pos.getPosicioY() + 1);
-				if(posicioValida(posAuxiliar, pos))
-					vectorPos.push_back(posAuxiliar);
-			}
-			else if (i == -1 || i == 1)
-			{
-				posAuxiliar.setPosicioY(pos.getPosicioY() - 2);
-				if(posicioValida(posAuxiliar, pos))
-					vectorPos.push_back(posAuxiliar);
-
-				posAuxiliar.setPosicioY(pos.getPosicioY() + 2);
-				if(posicioValida(posAuxiliar, pos))
-					vectorPos.push_back(posAuxiliar);
-			}
-		}
+		analisiCavall(posAuxiliar, pos, vectorPos);
 
 		break;
 
 	case T_ALFIL:
 
-		AnalisiDiagonals(posAuxiliar, pos, vectorPos);
+		analisiDiagonals(posAuxiliar, pos, vectorPos);
 
 		break;
 
@@ -243,7 +219,7 @@ void Tauler::llegirTaulerDeArxiu(const string& nomFitxer)
 // ---------------------------------------------------------------------------------------- moure fitxa
 void Tauler::moureFitxa(const PosicioTauler& posFrom, const PosicioTauler& posTo)
 {
-	if(getColorFitxa(posFrom) != C_CAP && posicioDinsVector(posTo, aconseguirPosicionsValides(posFrom)))// fer posicioDinsVector()
+	if(getColorFitxa(posFrom) != C_CAP && posicioDinsVector(posTo, aconseguirPosicionsValides(posFrom))) // fer posicioDinsVector()
 	{
 		// asignar la nova posició amb la peça
 		// borrar la peça de on estava
@@ -256,7 +232,7 @@ bool Tauler::posicioDinsVector(const PosicioTauler& pos, vectorDePosicions& vect
 	int i = 0;
 	bool trobat = false;
 
-	while(!trobat && i < vectorPos.max_size())
+	while(!trobat && i < vectorPos.size())
 	{
 		if(pos == vectorPos.at(i))
 			trobat = true;
@@ -313,7 +289,7 @@ int Tauler::getMogudaFitxa(PosicioTauler pos)
 
 
 // funcions per analitzar les posicions vàlides
-void Tauler::analisiPeo(PosicioTauler posAuxiliar, PosicioTauler pos, vectorDePosicions& vectorPos)
+void Tauler::analisiPeo(const PosicioTauler& posAuxiliar, const PosicioTauler& pos, vectorDePosicions& vectorPos)
 {
 	//PosicioTauler posAuxiliar;
 	posAuxiliar.setPosicioX(pos.getPosicioX());
@@ -324,7 +300,7 @@ void Tauler::analisiPeo(PosicioTauler posAuxiliar, PosicioTauler pos, vectorDePo
 		direccio = -1;
 
 	// analitzem la posició frontal
-	posAuxiliar.setPosicioY(pos.getPosicioY() + 1 * direccio);
+	posAuxiliar.setPosicioY((pos.getPosicioY() + 1) * direccio);
 	if (posicioValida(posAuxiliar, pos) && getColorFitxa(posAuxiliar) == C_CAP)
 		vectorPos.push_back(posAuxiliar);
 
@@ -340,12 +316,12 @@ void Tauler::analisiPeo(PosicioTauler posAuxiliar, PosicioTauler pos, vectorDePo
 
 
 	// analitzem la 2a posició frontal
-	posAuxiliar.setPosicioY(pos.getPosicioY() + 2 * direccio);
+	posAuxiliar.setPosicioY((pos.getPosicioY() + 2) * direccio);
 	if (posicioValida(posAuxiliar, pos) && getColorFitxa(posAuxiliar) == C_CAP && !getMogudaFitxa(pos))
 		vectorPos.push_back(posAuxiliar);
 }
 
-void Tauler::AnalisiDiagonals(PosicioTauler& posAuxiliar, PosicioTauler& pos, vectorDePosicions& vectorPos)
+void Tauler::analisiDiagonals(const PosicioTauler& posAuxiliar, const PosicioTauler& pos, vectorDePosicions& vectorPos)
 {
 	int i = 0;
 	bool fiLinea = 0;
@@ -414,7 +390,7 @@ void Tauler::AnalisiDiagonals(PosicioTauler& posAuxiliar, PosicioTauler& pos, ve
 
 }
 
-void Tauler::AnalisiHoritzontals(PosicioTauler& posAuxiliar, PosicioTauler& pos, vectorDePosicions& vectorPos)
+void Tauler::analisiHoritzontals(const PosicioTauler& posAuxiliar, const PosicioTauler& pos, vectorDePosicions& vectorPos)
 {
 	int i = 0;
 	bool fiLinea = false;
@@ -441,7 +417,7 @@ void Tauler::AnalisiHoritzontals(PosicioTauler& posAuxiliar, PosicioTauler& pos,
 	}
 }
 
-void Tauler::AnalisiVerticals(PosicioTauler& posAuxiliar, PosicioTauler& pos, vectorDePosicions& vectorPos)
+void Tauler::analisiVerticals(const PosicioTauler& posAuxiliar, const PosicioTauler& pos, vectorDePosicions& vectorPos)
 {
 	int i = 0;
 	bool fiLinea = false;
@@ -472,5 +448,33 @@ void Tauler::AnalisiVerticals(PosicioTauler& posAuxiliar, PosicioTauler& pos, ve
 	}
 }
 
+void Tauler::analisiCavall( PosicioTauler& posAuxiliar,  PosicioTauler& pos, vectorDePosicions& vectorPos)
+{
+	// analitzem les posicions per columnes i només en les que es pot moure el caball
+		for(int i = -2; i <= 2; i++)
+		{
+			posAuxiliar.setPosicioX(pos.getPosicioX() + i);
 
+			if(i == -2 || i == 2)
+			{
+				posAuxiliar.setPosicioY(pos.getPosicioY() - 1);
+				if(posicioValida(posAuxiliar, pos))
+					vectorPos.push_back(posAuxiliar);
+
+				posAuxiliar.setPosicioY(pos.getPosicioY() + 1);
+				if(posicioValida(posAuxiliar, pos))
+					vectorPos.push_back(posAuxiliar);
+			}
+			else if (i == -1 || i == 1)
+			{
+				posAuxiliar.setPosicioY(pos.getPosicioY() - 2);
+				if(posicioValida(posAuxiliar, pos))
+					vectorPos.push_back(posAuxiliar);
+
+				posAuxiliar.setPosicioY(pos.getPosicioY() + 2);
+				if(posicioValida(posAuxiliar, pos))
+					vectorPos.push_back(posAuxiliar);
+			}
+		}
+}
 
