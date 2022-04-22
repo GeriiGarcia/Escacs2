@@ -26,7 +26,6 @@ vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
 		// analitzem cada posició que hi ha al voltant del rei i ens quedem amb les vàlides
 		for(int i = -1; i <= 1; i++)
 		{
-			PosicioTauler posAuxiliar;
 			posAuxiliar.setPosicioX(pos.getPosicioX() + i);
 			
 			for(int j = -1; j <= 1; j++)
@@ -126,7 +125,6 @@ vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
 		break;
 
 	case T_TORRE:
-		//PosicioTauler posAuxiliar;
 		int i;
 		i = 0;
 		posAuxiliar.setPosicioY(pos.getPosicioY() + i);
@@ -484,4 +482,18 @@ string Tauler::taulaToString() const
 	// afegim els noms de les files
 	taulaStr.append("  a  b  c  d  e  f  g  h");
 	return taulaStr;
+}
+
+
+void DiagonalNE(PosicioTauler& posAuxiliar, PosicioTauler& pos)
+{
+	posAuxiliar.setPosicioX(pos.getPosicioX() + i);   //diagonal NE
+	posAuxiliar.setPosicioY(pos.getPosicioY() - i);
+	while (posicioValida(posAuxiliar, pos))
+	{
+		i++;
+		posAuxiliar.setPosicioX(pos.getPosicioX() + i);
+		posAuxiliar.setPosicioY(pos.getPosicioY() - i);
+		vectorPos.push_back(posAuxiliar);
+	}
 }
