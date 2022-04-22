@@ -40,7 +40,7 @@ vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
 		break;
 
 	case T_REINA: //amb diagonal NE em refereixo a la diagonal de adalt a la dreta ns  si m'entens rbro v 
-	v
+	
 		int i = 0;
 		posAuxiliar.setPosicioX(pos.getPosicioX() + i);   //diagonal NE
 		posAuxiliar.setPosicioY(pos.getPosicioY() - i);
@@ -316,7 +316,7 @@ int Tauler::getMogudaFitxa(PosicioTauler pos)
 void Tauler::llegirTaulerDeArxiu(const string& nomFitxer)
 {
 
-	ifstream fitxer(nomFitxer.c_str());
+	ifstream fitxer(nomFitxer);
 	string linea;
 
 	PosicioTauler pos;
@@ -324,9 +324,8 @@ void Tauler::llegirTaulerDeArxiu(const string& nomFitxer)
 
 	do {
 		if (fitxer.is_open())
-		{
 			std::getline(fitxer, linea);
-		}
+		
 		// Mirem de quin color es
 		if (linea.at(0) == '0')
 			color = C_BLANC;
@@ -434,29 +433,33 @@ void Tauler::llegirTaulerDeArxiu(const string& nomFitxer)
 	fitxer.close();
 }
 
-/*
+
+
 void Tauler::moureFitxa(const PosicioTauler& posFrom, const PosicioTauler& posTo)
 {
-	vectorDePosicions vector = aconseguirPosicionsValides(posFrom);
-
-	int i = 0;
-	while ((vector[i] != posTo) && (i < vector.size())) //es busca si en el vector existeix posTo
+	if(getColorFitxa(posFrom) != C_CAP && posicioDinsVector(posTo, aconseguirPosicionsValides(posFrom)))// fer posicioDinsVector()
 	{
-		i++;
-	}
+		// asignar la nova posició amb la peça
+		// borrar la peça de on estava
+	} 
 	
-	if (i != vector.size() - 1) //si el while no ha arribat al final doncs es cambia la posicio de la fitxa
+}
+
+bool Tauler::posicioDinsVector(const PosicioTauler& pos, vectorDePosicions& vectorPos)
+{
+	int i = 0;
+	bool trobat = false;
+
+	while(!trobat && i < vectorPos.max_size())
 	{
-		m_tauler[posFrom.getPosicioX()][posFrom.getPosicioY()].setPosicioX(posTo.getPosicioX()); //ns si esta be. No bro, no ho està
-		m_tauler[posFrom.getPosicioX()][posFrom.getPosicioY()].setPosicioY(posTo.getPosicioY());
+		if(pos == vectorPos.at(i))
+			trobat = true;
+		else
+			i++;
 	}
-	else
-	{
-		doncs dir que no s'ha trobat posTo i que escolleixi un altre posicio
-		  ns fins a quin punt es podria fer un bool i que en el main es repeteixi aquesta funcio fins
-		  que sigui true
-	}
-}*/
+ 
+	return trobat;
+}
 
 // funció on guardem tota la taula en un string
 string Tauler::taulaToString() const

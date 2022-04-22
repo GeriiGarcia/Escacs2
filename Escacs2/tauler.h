@@ -28,6 +28,7 @@ public:
     int getColorFitxa(PosicioTauler pos);
     int getTipusFitxa(PosicioTauler pos);
     int getMogudaFitxa(PosicioTauler pos);
+    bool posicioDinsVector(const PosicioTauler& pos, vectorDePosicions& vectorPos);
 
 private:
     Fitxa m_tauler[COLUMNES_TAULER][FILES_TAULER];

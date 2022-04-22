@@ -15,6 +15,7 @@ class PosicioTauler
 	int getPosicioY() const { return m_posY; } 
 
 	// Metodes
+	bool operator==(const PosicioTauler pos) const;
 	// hauriem de fer una funció que llegeixi una posició del usuari en format string(ex: wP (peo blanc), bK (rei negre))
 
 	private:
