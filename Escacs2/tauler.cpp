@@ -436,34 +436,31 @@ void Tauler::llegirTaulerDeArxiu(const string& nomFitxer)
 }
 
 
+
 void Tauler::moureFitxa(const PosicioTauler& posFrom, const PosicioTauler& posTo)
 {
-	if(getColorFitxa(posFrom) != C_CAP && posicioDinsVector(posTo, vectorDePosicions))// fer posicioDinsVector()
+	if(getColorFitxa(posFrom) != C_CAP && posicioDinsVector(posTo, aconseguirPosicionsValides(posFrom)))// fer posicioDinsVector()
 	{
 		// asignar la nova posició amb la peça
 		// borrar la peça de on estava
 	} 
 	
-	/*
-	vectorDePosicions vector = aconseguirPosicionsValides(posFrom);
+}
 
+bool Tauler::posicioDinsVector(const PosicioTauler& pos, vectorDePosicions& vectorPos)
+{
 	int i = 0;
-	while ((vector[i] != posTo) && (i < vector.size())) //es busca si en el vector existeix posTo
+	bool trobat = false;
+
+	while(!trobat && i < vectorPos.max_size())
 	{
-		i++;
+		if(pos == vectorPos.at(i))
+			trobat = true;
+		else
+			i++;
 	}
-	
-	if (i != vector.size() - 1) //si el while no ha arribat al final doncs es cambia la posicio de la fitxa
-	{
-		m_tauler[posFrom.getPosicioX()][posFrom.getPosicioY()].setPosicioX(posTo.getPosicioX()); //ns si esta be. No bro, no ho està
-		m_tauler[posFrom.getPosicioX()][posFrom.getPosicioY()].setPosicioY(posTo.getPosicioY());
-	}
-	else
-	{
-		doncs dir que no s'ha trobat posTo i que escolleixi un altre posicio
-		  ns fins a quin punt es podria fer un bool i que en el main es repeteixi aquesta funcio fins
-		  que sigui true
-	}*/
+ 
+	return trobat;
 }
 
 // funció on guardem tota la taula en un string
