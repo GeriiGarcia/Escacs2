@@ -41,7 +41,7 @@ vectorDePosicions Tauler::aconseguirPosicionsValides(const PosicioTauler & pos)
 		break;
 
 	case T_REINA: //amb diagonal NE em refereixo a la diagonal de adalt a la dreta ns  si m'entens rbro v 
-	v
+	
 		int i = 0;
 		posAuxiliar.setPosicioX(pos.getPosicioX() + i);   //diagonal NE
 		posAuxiliar.setPosicioY(pos.getPosicioY() - i);
@@ -318,7 +318,7 @@ int Tauler::getMogudaFitxa(PosicioTauler pos)
 void Tauler::llegirTaulerDeArxiu(const string& nomFitxer)
 {
 
-	ifstream fitxer(nomFitxer.c_str());
+	ifstream fitxer(nomFitxer);
 	string linea;
 
 	PosicioTauler pos;
@@ -326,9 +326,8 @@ void Tauler::llegirTaulerDeArxiu(const string& nomFitxer)
 
 	do {
 		if (fitxer.is_open())
-		{
 			std::getline(fitxer, linea);
-		}
+		
 		// Mirem de quin color es
 		if (linea.at(0) == '0')
 			color = C_BLANC;
@@ -436,9 +435,16 @@ void Tauler::llegirTaulerDeArxiu(const string& nomFitxer)
 	fitxer.close();
 }
 
-/*
+
 void Tauler::moureFitxa(const PosicioTauler& posFrom, const PosicioTauler& posTo)
 {
+	if(getColorFitxa(posFrom) != C_CAP && posicioDinsVector(posTo, vectorDePosicions))// fer posicioDinsVector()
+	{
+		// asignar la nova posició amb la peça
+		// borrar la peça de on estava
+	} 
+	
+	/*
 	vectorDePosicions vector = aconseguirPosicionsValides(posFrom);
 
 	int i = 0;
@@ -457,8 +463,8 @@ void Tauler::moureFitxa(const PosicioTauler& posFrom, const PosicioTauler& posTo
 		doncs dir que no s'ha trobat posTo i que escolleixi un altre posicio
 		  ns fins a quin punt es podria fer un bool i que en el main es repeteixi aquesta funcio fins
 		  que sigui true
-	}
-}*/
+	}*/
+}
 
 // funció on guardem tota la taula en un string
 string Tauler::taulaToString() const
