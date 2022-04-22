@@ -33,6 +33,7 @@ public:
     void AnalisiDiagonals(PosicioTauler& posAuxiliar, PosicioTauler& pos, vectorDePosicions& vectorPos);
     void AnalisiVerticals(PosicioTauler& posAuxiliar, PosicioTauler& pos, vectorDePosicions& vectorPos);
     void AnalisiHoritzontals(PosicioTauler& posAuxiliar, PosicioTauler& pos, vectorDePosicions& vectorPos);
+    void analisiPeo(PosicioTauler& posAuxiliar, PosicioTauler& pos, vectorDePosicions& vectorPos);
 
 private:
     Fitxa m_tauler[COLUMNES_TAULER][FILES_TAULER];
