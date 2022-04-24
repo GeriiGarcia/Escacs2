@@ -221,8 +221,8 @@ void Tauler::moureFitxa(const PosicioTauler& posFrom, const PosicioTauler& posTo
 {
 	if(getColorFitxa(posFrom) != C_CAP && posicioDinsVector(posTo, aconseguirPosicionsValides(posFrom))) // fer posicioDinsVector()
 	{
-		// asignar la nova posició amb la peça
-		// borrar la peça de on estava
+		setNovaFitxa(posTo, m_tauler[posTo.getPosicioX()][posTo.getPosicioY()].getColor(), m_tauler[posTo.getPosicioX()][posTo.getPosicioY()].getTipus(), m_tauler[posTo.getPosicioX()][posTo.getPosicioY()].getMoguda());
+		setNovaFitxa(posFrom, C_CAP, T_BUIT, 0);
 	} 
 	
 }
@@ -269,6 +269,8 @@ string Tauler::taulaToString() const
 	return taulaStr;
 }
 
+
+
 // funcions auxiliars que ens permeten jugar amb les fitxes amb l'objectiu d'acotar codi
 int Tauler::getColorFitxa(PosicioTauler pos)
 {
@@ -285,11 +287,16 @@ int Tauler::getMogudaFitxa(PosicioTauler pos)
 	return m_tauler[pos.getPosicioX()][pos.getPosicioY()].getMoguda();
 }
 
-
+int Tauler::setNovaFitxa(PosicioTauler pos, int color, int tipus, int moguda)
+{
+	m_tauler[pos.getPosicioX()][pos.getPosicioY()].setColor(color);
+	m_tauler[pos.getPosicioX()][pos.getPosicioY()].setTipus(tipus);
+	m_tauler[pos.getPosicioX()][pos.getPosicioY()].setMoguda(moguda);
+}
 
 
 // funcions per analitzar les posicions vàlides
-void Tauler::analisiPeo(const PosicioTauler& posAuxiliar, const PosicioTauler& pos, vectorDePosicions& vectorPos)
+void Tauler::analisiPeo(PosicioTauler& posAuxiliar, const PosicioTauler& pos, vectorDePosicions& vectorPos)
 {
 	//PosicioTauler posAuxiliar;
 	posAuxiliar.setPosicioX(pos.getPosicioX());
@@ -321,7 +328,7 @@ void Tauler::analisiPeo(const PosicioTauler& posAuxiliar, const PosicioTauler& p
 		vectorPos.push_back(posAuxiliar);
 }
 
-void Tauler::analisiDiagonals(const PosicioTauler& posAuxiliar, const PosicioTauler& pos, vectorDePosicions& vectorPos)
+void Tauler::analisiDiagonals(PosicioTauler& posAuxiliar, const PosicioTauler& pos, vectorDePosicions& vectorPos)
 {
 	int i = 0;
 	bool fiLinea = 0;
@@ -390,7 +397,7 @@ void Tauler::analisiDiagonals(const PosicioTauler& posAuxiliar, const PosicioTau
 
 }
 
-void Tauler::analisiHoritzontals(const PosicioTauler& posAuxiliar, const PosicioTauler& pos, vectorDePosicions& vectorPos)
+void Tauler::analisiHoritzontals(PosicioTauler& posAuxiliar, const PosicioTauler& pos, vectorDePosicions& vectorPos)
 {
 	int i = 0;
 	bool fiLinea = false;
@@ -417,7 +424,7 @@ void Tauler::analisiHoritzontals(const PosicioTauler& posAuxiliar, const Posicio
 	}
 }
 
-void Tauler::analisiVerticals(const PosicioTauler& posAuxiliar, const PosicioTauler& pos, vectorDePosicions& vectorPos)
+void Tauler::analisiVerticals(PosicioTauler& posAuxiliar, const PosicioTauler& pos, vectorDePosicions& vectorPos)
 {
 	int i = 0;
 	bool fiLinea = false;
@@ -448,7 +455,7 @@ void Tauler::analisiVerticals(const PosicioTauler& posAuxiliar, const PosicioTau
 	}
 }
 
-void Tauler::analisiCavall( PosicioTauler& posAuxiliar,  PosicioTauler& pos, vectorDePosicions& vectorPos)
+void Tauler::analisiCavall( PosicioTauler& posAuxiliar, const PosicioTauler& pos, vectorDePosicions& vectorPos)
 {
 	// analitzem les posicions per columnes i només en les que es pot moure el caball
 		for(int i = -2; i <= 2; i++)
